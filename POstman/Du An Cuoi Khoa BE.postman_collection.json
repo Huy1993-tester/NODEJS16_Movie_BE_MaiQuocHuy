@@ -1,0 +1,293 @@
+{
+	"info": {
+		"_postman_id": "32c7a8dd-36e1-4256-bd4e-5c8245c6d24e",
+		"name": "Du An Cuoi Khoa BE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Upload Avatar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNjM3NTE0NDY0LCJleHAiOjFlKzM4fQ.LjDpPLH8bJkVQYvHtriZmOXuW8ltpNvpeT-rOM-LA5g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/USER/OneDrive/Máy tính/Download/Download/haha.jpg"
+						},
+						{
+							"key": "query",
+							"value": "mutation Mutation {\n  singleUpload {\n    fileUrl\n  }\n}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5555/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"graphql"
+					]
+				},
+				"description": "url: [http://localhost:5555/graphql](http://localhost:5555/graphql)  \nAction : Upload avatar  \nInput:\n\nStep 1: Create profile user  \nStep 2: Upload avatar\n\n*   Add Token : tap Headers\n*   Add Image : tap Body  \n    Output:  \n    {  \n    \"data\": {  \n    \"singleUpload\": {\n    \n    ```\n       \"fileUrl\": \"https://localhost:5555/images/1637506358251_haha.jpg\"\n    ```\n    \n    }  \n    }  \n    }"
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation Mutation($input: createInput) {\r\n  newUser(input: $input) {\r\n    success\r\n  }\r\n}",
+						"variables": "{\r\n    \"input\": {\r\n      \"userName\": \"Phương\",\r\n      \"email\": \"Phuong1@gmail.com\",\r\n      \"password\": \"1234\",\r\n      \"role\": \"ADMIN\"\r\n    }\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5555/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"graphql"
+					]
+				},
+				"description": "url: http://localhost:5555/graphql\nAction : Create new user\nInput:\n{\n    \"input\": {\n      \"userName\": \"Phương\",\n      \"email\": \"Phuong1@gmail.com\",\n      \"password\": \"1234\",\n      \"role\": \"ADMIN\"\n    }\n}\n\nOutput: \n{\n    \"data\": {\n        \"newUser\": {\n            \"success\": \"Thành công\"\n        }\n    }\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation Mutation($email: String, $password: String) {\r\n  Sign(email: $email, password: $password) {\r\n    token\r\n  }\r\n}",
+						"variables": "{\r\n    \"email\": \"Phuong1@gmail.com\",\r\n\"password\": \"1234\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5555/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"graphql"
+					]
+				},
+				"description": "url: http://localhost:5555/graphql\nAction : Login\nInput:\n{\n\"email\": \"Phuong1@gmail.com\",\n\"password\": \"1234\"\n}\n\nOutput: \n{\n    \"data\": {\n        \"Sign\": {\n            \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNjM3NTA0MDE3LCJleHAiOjFlKzM4fQ.lFSO52xAxkXKIvrMmUZ8K3YxGlZ3y4Pcd-OfpE0X7Nw\"\n        }\n    }\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Movie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation Mutation($flim: String, $trailer: String, $decription: String, $evaluate: Int, $active: Boolean) {\r\n  newMovie(flim: $flim, trailer: $trailer, decription: $decription, evaluate: $evaluate, active: $active) {\r\n    flim\r\n    trailer\r\n    decription\r\n    evaluate\r\n    active\r\n  }\r\n}",
+						"variables": "{\r\n    \"flim\": \"Diệt Quỷ\",\r\n    \"trailer\": \"https://dietquy.com.vn\",\r\n    \"decription\": \"Săn quỷ\",\r\n    \"evaluate\": 10,\r\n    \"active\": true\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5555/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"graphql"
+					]
+				},
+				"description": "url: http://localhost:5555/graphql\nAction : Create new movie\nInput:\n\n{\n    \"flim\": \"Diệt Quỷ\",\n    \"trailer\": \"https://dietquy.com.vn\",\n    \"decription\": \"Săn quỷ\",\n    \"evaluate\": 10,\n    \"active\": true\n}\n\nOutput: \n{\n    \"data\": {\n        \"newMovie\": {\n            \"flim\": \"Diệt Quỷ\",\n            \"trailer\": \"https://dietquy.com.vn\",\n            \"decription\": \"Săn quỷ\",\n            \"evaluate\": 10,\n            \"active\": true\n        }\n    }\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Cinema",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation Mutation($rap: String, $address: String) {\r\n  newRap(rap: $rap, address: $address) {\r\n    rap\r\n    address\r\n  }\r\n}",
+						"variables": "{\r\n    \"rap\": \"Rạp CGV\",\r\n    \"address\": \"1000 Phạm Văn Đồng Thủ Đức\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5555/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"graphql"
+					]
+				},
+				"description": "url: http://localhost:5555/graphql\nAction : Create new cinema\nInput:\n\n{\n    \"rap\": \"Rạp CGV\",\n    \"address\": \"1000 Phạm Văn Đồng Thủ Đức\"\n}\n\nOutput: \n{\n    \"data\": {\n        \"newRap\": {\n            \"rap\": \"Rạp CGV\",\n            \"address\": \"1000 Phạm Văn Đồng Thủ Đức\"\n        }\n    }\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Chair",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation Mutation($numChair: String) {\r\n  newChair(numChair: $numChair) {\r\n    numChair\r\n  }\r\n}",
+						"variables": "{\r\n    \"numChair\": \"1A1\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5555/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"graphql"
+					]
+				},
+				"description": "url: http://localhost:5555/graphql\nAction : Create new cinema\nInput:\n\n{\n    \"numChair\": \"1A1\"\n}\n\nOutput:\n{\n    \"data\": {\n        \"newChair\": {\n            \"numChair\": \"1A2\"\n        }\n    }\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Profile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation Mutation($brithday: String, $phone: String, $social: String, $userId: Int) {\r\n  newInfoUser(brithday: $brithday, phone: $phone, social: $social, user_id: $userId) {\r\n    success\r\n  }\r\n}",
+						"variables": "{\r\n    \"brithday\": \"1990-02-02\",\r\n    \"phone\": \"0912326255\",\r\n    \"social\": \"facebook\",\r\n    \"userId\": 1\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5555/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"graphql"
+					]
+				},
+				"description": "url: http://localhost:5555/graphql\nAction : Create new cinema\nInput:\n{\n    \"brithday\": \"1990-02-02\",\n    \"phone\": \"0912326255\",\n    \"social\": \"facebook\",\n    \"userId\": 1\n}\n\nOutput:\n{\n    \"data\": {\n        \"newInfoUser\": {\n            \"success\": \"Thành công\"\n        }\n    }\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Like",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation Mutation($like: Boolean, $userId: Int, $movieId: Int) {\r\n  newLike(like: $like, user_id: $userId, movie_id: $movieId) {\r\n    like\r\n  }\r\n}",
+						"variables": "{\r\n    \"userId\": 1,\r\n    \"like\": false,\r\n    \"movieId\": 1\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5555/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"graphql"
+					]
+				},
+				"description": "url: http://localhost:5555/graphql\nAction : Create new cinema\nInput:\n\n{\n    \"userId\": 1,\n    \"like\": false,\n    \"movieId\": 1\n}\n\nOutput:\n{\n    \"data\": {\n        \"newLike\": {\n            \"like\": false\n        }\n    }\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation Mutation($comment: String, $userId: Int, $movieId: Int) {\r\n  newComment(comment: $comment, user_id: $userId, movie_id: $movieId) {\r\n    comment\r\n  }\r\n}",
+						"variables": "{\r\n    \"userId\": 1,\r\n    \"movieId\": 1,\r\n    \"comment\": \"Phim hay\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5555/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"graphql"
+					]
+				},
+				"description": "url: http://localhost:5555/graphql\nAction : Create new cinema\nInput:\n\n{\n    \"userId\": 1,\n    \"movieId\": 1,\n    \"comment\": \"Phim hay\"\n}\n\nOutput:\n\n{\n    \"data\": {\n        \"newComment\": {\n            \"comment\": \"Phim hay\"\n        }\n    }\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation Mutation($startTime: String, $endTime: String, $price: Int, $payMethod: String, $chairNum: String, $userId: Int, $movieId: Int, $rapId: Int) {\r\n  newBooking(startTime: $startTime, endTime: $endTime, price: $price, payMethod: $payMethod, chairNum: $chairNum, user_id: $userId, movie_id: $movieId, rap_id: $rapId) {\r\n    message\r\n  }\r\n}",
+						"variables": "{\r\n    \"userId\": 1,\r\n    \"movieId\": 1,\r\n    \"startTime\": \"2021-02-02 20:00PM\",\r\n    \"endTime\": \"2021-02-02 21:30PM\",\r\n    \"price\": 500000,\r\n    \"payMethod\": \"Napas\",\r\n    \"rapId\": 1,\r\n    \"chairNum\": \"1A1\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5555/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"graphql"
+					]
+				},
+				"description": "url: http://localhost:5555/graphql\nAction : Create new cinema\nInput:\n\nStep 1: Input field\nStep 2: Send\n\nOutput:"
+			},
+			"response": []
+		}
+	]
+}
